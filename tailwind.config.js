@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        logo: ['"The Seasons"', 'serif'],
-        heading: ['"The Seasons"', 'serif'],
-        subheading: ['Ovo', 'serif'],
+        logo: ['var(--font-the-seasons)'],
+        heading: ['var(--font-the-seasons)'],
+        subheading: ['var(--font-ovo)'],
         body: ['Poppins', 'sans-serif'],
       },
       keyframes: {
