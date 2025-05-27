@@ -1,4 +1,5 @@
 import localFont from 'next/font/local';
+import { Ovo } from 'next/font/google';
 
 export const theSeasons = localFont({
   src: '../public/fonts/FONTSPRINGDEMO-TheSeasonsLightRegular.woff2',
@@ -7,15 +8,9 @@ export const theSeasons = localFont({
   preload: true,
 });
 
-export const ovo = localFont({
-  src: [
-    {
-      path: '../public/fonts/Ovo-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    }
-  ],
+export const ovo = Ovo({
+  weight: '400',
+  subsets: ['latin'],
   variable: '--font-ovo',
   display: 'swap',
-  preload: true,
 }); 
