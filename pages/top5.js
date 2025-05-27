@@ -111,7 +111,7 @@ export default function Top5() {
               top 5<span style={{ fontFamily: "'Ovo', serif" }}>%</span>
             </a>
             <a
-              href="#"
+              href="/get-started"
               className="text-white/90 hover:text-white transition text-lg font-normal"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
@@ -336,15 +336,16 @@ export default function Top5() {
                 <MixedHeadline text="For students: Earn, grow, and build your future. No noise. No scams. Just real work." />
               </p>
             </motion.div>
-            <motion.button
+            <motion.a
+              href="/get-started"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="px-8 py-3 rounded-full bg-white text-black font-semibold shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300"
+              className="px-8 py-3 rounded-full bg-white text-black font-semibold shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300 inline-block"
             >
               Get Started with Hustlr
-            </motion.button>
+            </motion.a>
           </div>
         </section>
       </main>

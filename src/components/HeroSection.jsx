@@ -74,6 +74,8 @@ export default function HeroSection() {
         <CTAButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
+          as="a"
+          href="/get-started?type=client"
         >
           Hire a Hustlr
         </CTAButton>
@@ -81,6 +83,8 @@ export default function HeroSection() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
           style={{ background: "#000", color: "#fff", border: "1px solid #fff" }}
+          as="a"
+          href="/get-started?type=student"
         >
           Apply as a Hustlr
         </CTAButton>
