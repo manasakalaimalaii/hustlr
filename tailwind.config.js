@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        logo: ['The Seasons', 'serif'],
-        heading: ['The Seasons', 'serif'],
-        subheading: ['Ovo', 'serif'],
-        body: ['Poppins', 'sans-serif'],
+        logo: ['var(--font-the-seasons)', 'serif'],
+        heading: ['var(--font-the-seasons)', 'serif'],
+        subheading: ['var(--font-ovo)', 'serif'],
+        body: ['var(--font-poppins)', 'sans-serif'],
       },
       keyframes: {
         fadeInTop: {
