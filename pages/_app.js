@@ -1,11 +1,10 @@
-import { theSeasons, ovo } from '../src/fonts';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <main className={`${theSeasons.variable} ${ovo.variable}`}>
+    <div className="font-heading">
       <Component {...pageProps} />
-    </main>
+    </div>
   );
 }
 
