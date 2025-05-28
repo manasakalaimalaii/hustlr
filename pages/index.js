@@ -372,28 +372,28 @@ export default function Home() {
             </button>
           </div>
           {/* Benefits */}
-          <div className="w-full max-w-7xl mx-auto flex flex-wrap justify-center gap-4 sm:gap-6 px-4">
+          <div className="w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 px-4">
             {benefits.map((benefit, i) => {
               const { main, info } = splitBenefit(benefit);
               return (
                 <div
                   key={benefit}
-                  className="group relative flex flex-col items-center justify-center w-[280px] h-[280px] bg-black text-white rounded-2xl shadow-lg transition-all duration-300 cursor-pointer overflow-hidden border border-white/10"
+                  className="group relative flex flex-col items-center justify-center w-full aspect-square max-w-[280px] mx-auto bg-black text-white rounded-2xl shadow-lg transition-all duration-300 cursor-pointer overflow-hidden border border-white/10"
                   style={{
                     opacity: offersOpacity, /* Fade with the section */
                     transitionDelay: `${i * 60}ms`,
                   }}
                 >
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-all duration-300 z-0"></div>
-                  <div className="flex flex-col items-center justify-center h-full w-full px-6 text-center transition-all duration-300 z-10">
+                  <div className="flex flex-col items-center justify-center h-full w-full px-4 sm:px-6 text-center transition-all duration-300 z-10">
                     <span
-                      className="font-ovo text-lg sm:text-xl font-normal break-words transition-all duration-300 group-hover:text-black"
+                      className="font-ovo text-base sm:text-lg font-normal break-words transition-all duration-300 group-hover:text-black"
                       style={{ fontFamily: "'Ovo', serif" }}
                     >
                       {main}
                     </span>
                     <span
-                      className="opacity-0 group-hover:opacity-100 mt-4 text-base font-ovo font-normal text-black transition-all duration-300 break-words"
+                      className="opacity-0 group-hover:opacity-100 mt-3 sm:mt-4 text-sm sm:text-base font-ovo font-normal text-black transition-all duration-300 break-words"
                       style={{ fontFamily: "'Ovo', serif" }}
                     >
                       {info}

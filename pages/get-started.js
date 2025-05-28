@@ -84,13 +84,13 @@ export default function GetStarted() {
         </header>
 
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center px-8 pt-20">
+        <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-8 pt-20">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-normal mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-4 sm:mb-6"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
               <MixedHeadline text="Get Early Access to Hustlr" />
@@ -99,7 +99,7 @@ export default function GetStarted() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-white/80 mb-8"
+              className="text-lg sm:text-xl md:text-2xl text-white/80 mb-6 sm:mb-8"
             >
               <MixedHeadline text="The fastest, smartest way to hire or earn — coming soon." />
             </motion.p>
@@ -107,7 +107,7 @@ export default function GetStarted() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg text-white/60 mb-12"
+              className="text-base sm:text-lg text-white/60 mb-8 sm:mb-12 px-4"
             >
               <MixedHeadline text="Over 3,000 people have already signed up. Join the waitlist to get first access to India's top 5% of student freelancers — before everyone else." />
             </motion.p>
@@ -117,7 +117,7 @@ export default function GetStarted() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="max-w-2xl mx-auto"
+              className="max-w-md mx-auto"
             >
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -128,14 +128,14 @@ export default function GetStarted() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       required
-                      className="flex-1 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:border-white/30 transition-all"
+                      className="flex-1 px-4 sm:px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/50 transition-all duration-300"
                     />
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="px-8 py-3 rounded-full bg-white text-black font-semibold shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-6 sm:px-8 py-3 rounded-full bg-white text-black font-semibold text-base sm:text-lg shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isLoading ? 'Joining...' : 'Join the Waitlist'}
+                      {isLoading ? 'Joining...' : 'Join Waitlist'}
                     </button>
                   </div>
                   <div className="flex justify-center gap-4 mt-4">
@@ -181,6 +181,53 @@ export default function GetStarted() {
                 </motion.div>
               )}
             </motion.div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-16 sm:py-24 px-4 sm:px-8">
+          <div className="max-w-6xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-2xl sm:text-3xl md:text-4xl font-normal mb-8 sm:mb-16 text-center"
+              style={{ fontFamily: "'The Seasons', serif" }}
+            >
+              Why Join the Waitlist?
+            </motion.h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+              {[
+                {
+                  title: "First Access",
+                  description: "Be among the first to experience the future of student freelancing."
+                },
+                {
+                  title: "Exclusive Benefits",
+                  description: "Get special perks and features when the platform launches."
+                },
+                {
+                  title: "Early Bird Pricing",
+                  description: "Lock in the best rates before they change."
+                }
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2 }}
+                  className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10"
+                >
+                  <h3 className="text-xl sm:text-2xl font-normal mb-3 sm:mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
+                    {feature.title}
+                  </h3>
+                  <p className="text-base sm:text-lg text-white/80">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       </main>

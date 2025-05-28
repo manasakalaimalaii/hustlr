@@ -121,13 +121,13 @@ export default function Top5() {
         </header>
 
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center justify-center px-8">
+        <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-8 pt-20">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-normal mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-4 sm:mb-6"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
               Only the Top <Counter end={5} /><span style={{ fontFamily: "'Ovo', serif" }}>%</span> Make It In
@@ -136,7 +136,7 @@ export default function Top5() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-white/80 mb-8"
+              className="text-lg sm:text-xl md:text-2xl text-white/80 mb-6 sm:mb-8"
             >
               <MixedHeadline text="Because clients deserve excellence — and students deserve to rise to it." />
             </motion.p>
@@ -144,7 +144,7 @@ export default function Top5() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg text-white/60 max-w-2xl mx-auto"
+              className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto px-4"
             >
               <MixedHeadline text="At Hustlr, we believe freelancing isn't just about doing work — it's about doing it with grit, creativity, and ownership. That's why only the top 5% of applicants ever make it onto the platform." />
             </motion.p>
@@ -152,93 +152,22 @@ export default function Top5() {
         </section>
 
         {/* Vetting Process Section */}
-        <section className="py-24 px-8">
+        <section className="py-16 sm:py-24 px-4 sm:px-8">
           <div className="max-w-6xl mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-normal mb-16 text-center"
+              className="text-2xl sm:text-3xl md:text-4xl font-normal mb-8 sm:mb-16 text-center"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
               The 5<span style={{ fontFamily: "'Ovo', serif" }}>-</span>Stage Vetting Process
             </motion.h2>
-            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-white/80 text-center mb-8 sm:mb-16 max-w-3xl mx-auto px-4">
               <MixedHeadline text="Each student goes through a rigorous, multi-step screening inspired by the world's top talent networks — to ensure every project on Hustlr gets done right." />
             </p>
 
-            <div className="space-y-8">
-              <Stage
-                number="1"
-                title="Language, Personality and Profile Review"
-                description="We screen for clarity, credibility, and character."
-                items={[
-                  "College & CGPA",
-                  "Work experience",
-                  "Technical skills",
-                  "Communication style",
-                  "Overall professionalism"
-                ]}
-                delay={0.2}
-              />
-              <Stage
-                number="2"
-                title="Portfolio and Skill Assessment"
-                description="Past work speaks volumes."
-                items={[
-                  "Problem-solving approach",
-                  "Depth of understanding",
-                  "Craftsmanship & design rationale"
-                ]}
-                delay={0.4}
-              /> 
-              <Stage
-                number="3"
-                title="The Test Project: 1 To 3 Weeks"
-                description="Real work. Real pressure. Real results."
-                items={[
-                  "Attention to detail",
-                  "Time & project management",
-                  "Execution quality under deadline"
-                ]}
-                delay={0.6}
-              />
-              <Stage
-                number="4"
-                title="Conversational AI Live Screening"
-                description="Not just smart — sharp on the spot."
-                items={[
-                  "Their test project knowledge",
-                  "Communication clarity",
-                  "Adaptability & creativity",
-                  "Deeper thinking and professionalism"
-                ]}
-                delay={0.8}
-              />
-              <Stage
-                number="5"
-                title="Final Approval"
-                description="Only the top 5% who pass all previous stages are onboarded to Hustlr. And we don't stop there — regular quality audits ensure our standards stay sky-high."
-                delay={1}
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Why It Matters Section */}
-        <section className="py-24 px-8 bg-white/5">
-          <div className="max-w-6xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-normal mb-16 text-center"
-              style={{ fontFamily: "'The Seasons', serif" }}
-            >
-              Why It Matters
-            </motion.h2>
-
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
               {[
                 {
                   title: "Best Work, Every Time",
@@ -263,12 +192,12 @@ export default function Top5() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  className="bg-black/20 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+                  className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10"
                 >
-                  <h3 className="text-2xl font-normal mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
+                  <h3 className="text-xl sm:text-2xl font-normal mb-3 sm:mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
                     <MixedHeadline text={item.title} />
                   </h3>
-                  <p className="text-white/80">
+                  <p className="text-base sm:text-lg text-white/80">
                     <MixedHeadline text={item.description} />
                   </p>
                 </motion.div>
@@ -278,13 +207,13 @@ export default function Top5() {
         </section>
 
         {/* Vision Section */}
-        <section className="py-24 px-8">
+        <section className="py-16 sm:py-24 px-4 sm:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-normal mb-8"
+              className="text-2xl sm:text-3xl md:text-4xl font-normal mb-6 sm:mb-8"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
               <MixedHeadline text="Hustlr's Vision" />
@@ -294,7 +223,7 @@ export default function Top5() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-white/80 mb-8"
+              className="text-lg sm:text-xl text-white/80 mb-6 sm:mb-8"
             >
               <MixedHeadline text="To redefine the standard for hiring top college talent — with speed, trust, and zero compromises." />
             </motion.p>
@@ -303,7 +232,7 @@ export default function Top5() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="text-lg text-white/60"
+              className="text-base sm:text-lg text-white/60"
             >
               <MixedHeadline text="We're building the first platform that truly cares for both students and clients. Because when we protect the hustle — everyone wins." />
             </motion.p>
@@ -311,13 +240,13 @@ export default function Top5() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 px-8 bg-white/5">
+        <section className="py-16 sm:py-24 px-4 sm:px-8 bg-white/5">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-normal mb-8"
+              className="text-2xl sm:text-3xl md:text-4xl font-normal mb-6 sm:mb-8"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
               <MixedHeadline text="Ready to Hire or Hustle?" />
@@ -327,12 +256,12 @@ export default function Top5() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="space-y-4 mb-12"
+              className="space-y-4 mb-8 sm:mb-12"
             >
-              <p className="text-xl text-white/80">
+              <p className="text-lg sm:text-xl text-white/80">
                 <MixedHeadline text="For clients: Hire Gen Z's top 5% — fast, verified, and guaranteed." />
               </p>
-              <p className="text-xl text-white/80">
+              <p className="text-lg sm:text-xl text-white/80">
                 <MixedHeadline text="For students: Earn, grow, and build your future. No noise. No scams. Just real work." />
               </p>
             </motion.div>
@@ -342,7 +271,7 @@ export default function Top5() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="px-8 py-3 rounded-full bg-white text-black font-semibold shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300 inline-block"
+              className="inline-block px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white text-black font-semibold text-base sm:text-lg shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300"
             >
               Get Started with Hustlr
             </motion.a>
