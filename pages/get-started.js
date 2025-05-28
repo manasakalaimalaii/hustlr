@@ -8,7 +8,7 @@ function MixedHeadline({ text }) {
   return (
     <>
       {text.split("").map((char, i) =>
-        char === "#" || char === "%" || char === "'" || char === "-" || char === "—" || char === "–" ? (
+        char === "#" || char === "%" || char === "'" || char === "-" || char === "(" || char === ")" || char === "@" || char === "–" || char === "&" ? (
           <span key={i} className="font-ovo" style={{ fontFamily: "'Ovo', serif" }}>
             {char}
           </span>
@@ -148,7 +148,7 @@ export default function GetStarted() {
                           : 'bg-transparent text-white border border-white/30'
                       }`}
                     >
-                      I'm a Student
+                      <MixedHeadline text="I'm a Student" />
                     </button>
                     <button
                       type="button"
@@ -159,7 +159,7 @@ export default function GetStarted() {
                           : 'bg-transparent text-white border border-white/30'
                       }`}
                     >
-                      I'm a Client
+                      <MixedHeadline text="I'm a Client" />
                     </button>
                   </div>
                 </form>
@@ -170,13 +170,13 @@ export default function GetStarted() {
                   className="bg-white/5 rounded-2xl p-8 border border-white/10"
                 >
                   <h3 className="text-2xl font-normal mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
-                    You are on the List
+                    <MixedHeadline text="You are on the List" />
                   </h3>
                   <p className="text-white/80 mb-6">
-                    Thanks for joining the waitlist. We'll be in touch soon with your early access details.
+                    <MixedHeadline text="Thanks for joining the waitlist. We'll be in touch soon with your early access details." />
                   </p>
                   <p className="text-sm text-white/60">
-                    Keep an eye on your inbox for updates.
+                    <MixedHeadline text="Keep an eye on your inbox for updates." />
                   </p>
                 </motion.div>
               )}
@@ -194,7 +194,7 @@ export default function GetStarted() {
               className="text-2xl sm:text-3xl md:text-4xl font-normal mb-8 sm:mb-16 text-center"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
-              Why Join the Waitlist?
+              <MixedHeadline text="Why Join the Waitlist?" />
             </motion.h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
               {[
@@ -220,10 +220,10 @@ export default function GetStarted() {
                   className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10"
                 >
                   <h3 className="text-xl sm:text-2xl font-normal mb-3 sm:mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
-                    {feature.title}
+                    <MixedHeadline text={feature.title} />
                   </h3>
                   <p className="text-base sm:text-lg text-white/80">
-                    {feature.description}
+                    <MixedHeadline text={feature.description} />
                   </p>
                 </motion.div>
               ))}

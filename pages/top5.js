@@ -7,7 +7,7 @@ function MixedHeadline({ text }) {
   return (
     <>
       {text.split("").map((char, i) =>
-        char === "#" || char === "%" || char === "'" ? (
+        char === "#" || char === "%" || char === "'" || char === "-" || char === "(" || char === ")" || char === "&" ? (
           <span key={i} className="font-ovo" style={{ fontFamily: "'Ovo', serif" }}>
             {char}
           </span>
@@ -63,15 +63,16 @@ function Stage({ number, title, description, items, delay }) {
         </div>
         <div>
           <h3 className="text-2xl font-normal mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
-            {title}
+            <MixedHeadline text={title} />
           </h3>
-          <p className="text-white/80 mb-6">{description}</p>
+          <p className="text-white/80 mb-6">
+            <MixedHeadline text={description} />
+          </p>
           {items && (
-            <ul className="space-y-3">
+            <ul className="list-disc pl-6">
               {items.map((item, index) => (
-                <li key={index} className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
-                  <span className="text-white/80">{item}</span>
+                <li key={index} className="text-white/80">
+                  <MixedHeadline text={item} />
                 </li>
               ))}
             </ul>
@@ -142,6 +143,7 @@ export default function Top5() {
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
+              
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto px-4"
@@ -167,40 +169,65 @@ export default function Top5() {
               <MixedHeadline text="Each student goes through a rigorous, multi-step screening inspired by the world's top talent networks — to ensure every project on Hustlr gets done right." />
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
+            <div className="grid grid-cols-1 gap-6 sm:gap-8 max-w-4xl mx-auto">
               {[
                 {
-                  title: "Best Work, Every Time",
-                  description: "Clients don't just hope for quality — they get it. Period."
+                  number: 1,
+                  title: "Language, Personality & Profile Review",
+                  description: "We screen for clarity, credibility, and character.",
+                  items: [
+                    "College & CGPA",
+                    "Work experience",
+                    "Technical skills",
+                    "Communication style",
+                    "Overall professionalism"
+                  ]
                 },
                 {
-                  title: "Hustlrs Only",
-                  description: "We don't reward mediocrity. We reward hustle, ownership, and consistency."
+                  number: 2,
+                  title: "Portfolio & Skill Assessment",
+                  description: "Past work speaks volumes. Students submit a project demo, plus complete a skill-specific challenge. We assess:",
+                  items: [
+                    "Problem-solving approach",
+                    "Depth of understanding",
+                    "Craftsmanship & design rationale"
+                  ]
                 },
                 {
-                  title: "A Reputation That Grows",
-                  description: "Students don't just land gigs — they build a real portfolio they're proud of."
+                  number: 3,
+                  title: "The Test Project (1–3 Weeks)",
+                  description: "Real work. Real pressure. Real results. We assign a hands-on, realistic task that tests:",
+                  items: [
+                    "Attention to detail",
+                    "Time & project management",
+                    "Execution quality under deadline"
+                  ]
                 },
                 {
-                  title: "Protected for Both Sides",
-                  description: "This isn't guesswork. It's a system designed for trust, speed, and results."
+                  number: 4,
+                  title: "Conversational AI Live Screening",
+                  description: "Not just smart — sharp on the spot. An AI-driven live session tests:",
+                  items: [
+                    "Their test project knowledge",
+                    "Communication clarity",
+                    "Adaptability & creativity",
+                    "Deeper thinking and professionalism"
+                  ]
+                },
+                {
+                  number: 5,
+                  title: "Final Approval",
+                  description: "Only the top 5% who pass all previous stages are onboarded to Hustlr. And we don't stop there — regular quality audits ensure our standards stay sky-high."
                 }
-              ].map((item, index) => (
-                <motion.div
+              ].map((stage, index) => (
+                <Stage
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10"
-                >
-                  <h3 className="text-xl sm:text-2xl font-normal mb-3 sm:mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
-                    <MixedHeadline text={item.title} />
-                  </h3>
-                  <p className="text-base sm:text-lg text-white/80">
-                    <MixedHeadline text={item.description} />
-                  </p>
-                </motion.div>
+                  number={stage.number}
+                  title={stage.title}
+                  description={stage.description}
+                  items={stage.items}
+                  delay={index * 0.2}
+                />
               ))}
             </div>
           </div>
