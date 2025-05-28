@@ -94,6 +94,50 @@ const studentSteps = [
   "Top 5% only: Real gigs, verified clients, fast payments"
 ];
 
+// Mobile menu component
+function MobileMenu({ isOpen, onClose }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: "100%" }}
+      animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : "100%" }}
+      transition={{ duration: 0.3 }}
+      className="fixed top-0 right-0 h-full w-64 bg-black/95 backdrop-blur-lg z-50 p-6"
+    >
+      <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <nav className="flex flex-col gap-6 mt-12">
+        <a
+          href="/"
+          className="text-white/90 hover:text-white transition text-lg font-normal"
+          style={{ fontFamily: "'The Seasons', serif" }}
+          onClick={onClose}
+        >
+          home
+        </a>
+        <a
+          href="/top5"
+          className="text-white/90 hover:text-white transition text-lg font-normal"
+          style={{ fontFamily: "'The Seasons', serif" }}
+          onClick={onClose}
+        >
+          top 5<span style={{ fontFamily: "'Ovo', serif" }}>%</span>
+        </a>
+        <a
+          href="/get-started"
+          className="text-white/90 hover:text-white transition text-lg font-normal"
+          style={{ fontFamily: "'The Seasons', serif" }}
+          onClick={onClose}
+        >
+          get started
+        </a>
+      </nav>
+    </motion.div>
+  );
+}
+
 export default function Home() {
   // Typewriter for two parts
   const [typedBefore, typedAfter] = useSplitTypewriter(heroHeadline, breakAfter, 90);
@@ -146,10 +190,13 @@ export default function Home() {
 
   const [activeStep, setActiveStep] = useState(0);
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <>
       <Head>
         <title>Hustlr</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <main 
         className="relative min-h-[200vh] w-full font-body overflow-x-hidden" 
@@ -159,11 +206,12 @@ export default function Home() {
         }}
       >
         {/* HEADER BAR */}
-        <header className="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-transparent">
-          <a href="/" className="font-logo text-2xl tracking-tight text-white" style={{ fontFamily: "'The Seasons', serif" }}>
+        <header className="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-4 sm:px-6 py-4 border-b border-white/10 bg-transparent">
+          <a href="/" className="font-logo text-xl sm:text-2xl tracking-tight text-white" style={{ fontFamily: "'The Seasons', serif" }}>
             hustlr
           </a>
-          <nav className="flex gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex gap-8">
             <a
               href="/"
               className="text-white/90 hover:text-white transition text-lg font-normal"
@@ -186,16 +234,28 @@ export default function Home() {
               get started
             </a>
           </nav>
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="md:hidden text-white/80 hover:text-white"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </header>
+
+        {/* Mobile Menu */}
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
         {/* HERO SECTION CONTAINER */}
         <section
-          className="sticky top-0 h-screen flex items-center justify-between px-8 md:px-16 lg:px-24"
+          className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-8 md:px-16 lg:px-24"
         >
           {/* Left side content */}
-          <div className="relative z-10 flex flex-col items-start text-left max-w-2xl">
+          <div className="relative z-10 flex flex-col items-center sm:items-start text-center sm:text-left max-w-2xl">
             <h1
-              className="font-logo text-3xl sm:text-5xl md:text-6xl tracking-tight font-normal"
+              className="font-logo text-2xl sm:text-3xl md:text-5xl lg:text-6xl tracking-tight font-normal"
               style={{
                 fontFamily: "'The Seasons', serif",
                 color: "#fff",
@@ -213,16 +273,16 @@ export default function Home() {
               )}
             </h1>
             <p
-              className="font-body text-lg sm:text-xl text-white/90 mt-4"
+              className="font-body text-base sm:text-lg md:text-xl text-white/90 mt-4"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               {heroSubtitle}
             </p>
-            <div className="flex flex-col items-start mt-8">
-              <a href="/get-started" className="px-8 py-3 rounded-full bg-white text-black font-semibold shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300">
+            <div className="flex flex-col items-center sm:items-start mt-8">
+              <a href="/get-started" className="px-6 sm:px-8 py-3 rounded-full bg-white text-black font-semibold shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300">
                 Hire Now
               </a>
-              <p className="text-sm text-white/60 mt-3 sm:text-xl" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              <p className="text-sm sm:text-base md:text-xl text-white/60 mt-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 3000+ students on the waitlist
               </p>
             </div>
@@ -281,15 +341,15 @@ export default function Home() {
           }}
         >
           <h2
-            className="font-logo text-2xl sm:text-4xl font-normal mb-16 text-white"
+            className="font-logo text-xl sm:text-2xl md:text-4xl font-normal mb-8 sm:mb-16 text-white"
             style={{ fontFamily: "'The Seasons', serif" }}
           >
             What Hustlr Offers
           </h2>
           {/* Tabs */}
-          <div className="flex justify-center mb-8 gap-16">
+          <div className="flex justify-center mb-8 gap-4 sm:gap-16">
             <button
-              className={`px-8 py-2 rounded-t-lg font-semibold transition-all duration-300 text-lg sm:text-1xl ${
+              className={`px-4 sm:px-8 py-2 rounded-t-lg font-semibold transition-all duration-300 text-base sm:text-lg md:text-xl ${
                 tab === "clients"
                   ? "bg-white text-black shadow"
                   : "bg-transparent text-white border-b-2 border-transparent hover:border-white"
@@ -300,7 +360,7 @@ export default function Home() {
               For Clients
             </button>
             <button
-              className={`px-8 py-2 rounded-t-lg font-semibold transition-all duration-300 text-lg sm:text-1xl ${
+              className={`px-4 sm:px-8 py-2 rounded-t-lg font-semibold transition-all duration-300 text-base sm:text-lg md:text-xl ${
                 tab === "students"
                   ? "bg-white text-black shadow"
                   : "bg-transparent text-white border-b-2 border-transparent hover:border-white"
@@ -312,28 +372,28 @@ export default function Home() {
             </button>
           </div>
           {/* Benefits */}
-          <div className="w-full max-w-6xl mx-auto flex flex-wrap justify-center gap-8">
+          <div className="w-full max-w-7xl mx-auto flex flex-wrap justify-center gap-4 sm:gap-6 px-4">
             {benefits.map((benefit, i) => {
               const { main, info } = splitBenefit(benefit);
               return (
                 <div
                   key={benefit}
-                  className="group relative flex flex-col items-center justify-center w-56 h-56 sm:w-64 sm:h-64 bg-black text-white rounded-2xl shadow-lg transition-all duration-300 cursor-pointer overflow-hidden border border-white/10"
+                  className="group relative flex flex-col items-center justify-center w-[280px] h-[280px] bg-black text-white rounded-2xl shadow-lg transition-all duration-300 cursor-pointer overflow-hidden border border-white/10"
                   style={{
                     opacity: offersOpacity, /* Fade with the section */
                     transitionDelay: `${i * 60}ms`,
                   }}
                 >
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-all duration-300 z-0"></div>
-                  <div className="flex flex-col items-center justify-center h-full w-full px-4 text-center transition-all duration-300 z-10">
+                  <div className="flex flex-col items-center justify-center h-full w-full px-6 text-center transition-all duration-300 z-10">
                     <span
-                      className="font-ovo text-lg sm:text-2xl font-normal break-words transition-all duration-300 group-hover:text-black"
+                      className="font-ovo text-lg sm:text-xl font-normal break-words transition-all duration-300 group-hover:text-black"
                       style={{ fontFamily: "'Ovo', serif" }}
                     >
                       {main}
                     </span>
                     <span
-                      className="opacity-0 group-hover:opacity-100 mt-4 text-base sm:text-lg font-ovo font-normal text-black transition-all duration-300 break-words"
+                      className="opacity-0 group-hover:opacity-100 mt-4 text-base font-ovo font-normal text-black transition-all duration-300 break-words"
                       style={{ fontFamily: "'Ovo', serif" }}
                     >
                       {info}
@@ -344,7 +404,7 @@ export default function Home() {
                     .group:hover,
                     .group:focus {
                       box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25), 0 1.5px 8px 0 #fff2;
-                      transform: scale(1.09);
+                      transform: scale(1.05);
                     }
                   `}</style>
                 </div>
@@ -397,12 +457,12 @@ export default function Home() {
           {/* Timeline */}
           <div className="w-full max-w-6xl mx-auto">
             {/* Timeline dots and lines */}
-            <div className="flex justify-center items-center mb-16 px-4">
+            <div className="flex flex-wrap justify-center items-center mb-8 sm:mb-16 px-4 gap-2 sm:gap-0">
               {[0, 1, 2, 3, 4].map((index) => (
                 <div key={index} className="flex items-center">
                   <button
                     onClick={() => setActiveStep(index)}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-lg transition-all duration-300 ${
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-semibold text-base sm:text-lg transition-all duration-300 ${
                       index <= activeStep
                         ? "bg-white text-black"
                         : "bg-white/20 text-white/50"
@@ -412,7 +472,7 @@ export default function Home() {
                   </button>
                   {index < 4 && (
                     <div 
-                      className={`h-1 w-32 transition-all duration-300 ${
+                      className={`h-1 w-16 sm:w-32 transition-all duration-300 ${
                         index < activeStep ? "bg-white" : "bg-white/20"
                       }`}
                     />
@@ -422,7 +482,7 @@ export default function Home() {
             </div>
 
             {/* Step content */}
-            <div className="relative h-64">
+            <div className="relative h-48 sm:h-64">
               {(tab === "clients" ? clientSteps : studentSteps).map((step, index) => {
                 if (index === 5) return null; // Skip trust message for now
                 
@@ -435,11 +495,11 @@ export default function Home() {
                         : "opacity-0 translate-y-8 pointer-events-none"
                     }`}
                   >
-                    <div className="flex flex-col items-center">
-                      <h3 className="text-2xl sm:text-3xl text-white font-normal mb-4" style={{ fontFamily: "The Seasons', serif" }}>
+                    <div className="flex flex-col items-center px-4">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl text-white font-normal mb-2 sm:mb-4 text-center" style={{ fontFamily: "'The Seasons', serif" }}>
                         {step.split(" — ")[0]}
                       </h3>
-                      <p className="text-xl text-white/80 max-w-2xl">
+                      <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl text-center">
                         {step.split(" — ")[1]}
                       </p>
                     </div>
@@ -449,7 +509,7 @@ export default function Home() {
             </div>
 
             {/* Trust message */}
-            <div className="font-ovo mt-1 sm:text-2xl text-lg text-white/90" style={{ fontFamily: "'Ovo', serif" }}>
+            <div className="font-ovo mt-4 sm:mt-8 text-base sm:text-lg md:text-2xl text-white/90 text-center px-4" style={{ fontFamily: "'Ovo', serif" }}>
               {tab === "clients" ? clientSteps[5] : studentSteps[5]}
             </div>
           </div>
@@ -535,13 +595,13 @@ export default function Home() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="relative flex flex-col items-center justify-center min-h-[50vh] text-center px-4 py-32 bg-black/20">
+        <section className="relative flex flex-col items-center justify-center min-h-[50vh] text-center px-4 py-16 sm:py-32 bg-black/20">
           <div className="max-w-4xl mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl sm:text-4xl font-normal mb-8 text-white"
+              className="text-2xl sm:text-3xl md:text-4xl font-normal mb-4 sm:mb-8 text-white"
               style={{ fontFamily: "'The Seasons', serif" }}
             >
               <MixedHeadline text="Join the Waitlist" />
@@ -551,7 +611,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-white/80 mb-12 max-w-2xl mx-auto"
+              className="text-base sm:text-lg md:text-xl text-white/80 mb-8 sm:mb-12 max-w-2xl mx-auto px-4"
             >
               <MixedHeadline text="Be among the first to experience the future of student freelancing. Limited spots available." />
             </motion.p>
@@ -560,24 +620,15 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
             >
-              <a href="/get-started?type=student" className="px-8 py-4 rounded-full bg-white text-black font-semibold text-lg shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300">
+              <a href="/get-started?type=student" className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white text-black font-semibold text-base sm:text-lg shadow-lg hover:scale-105 hover:bg-black hover:text-white border border-white transition-all duration-300">
                 Join as a Student
               </a>
-              <a href="/get-started?type=client" className="px-8 py-4 rounded-full bg-transparent text-white font-semibold text-lg shadow-lg hover:scale-105 hover:bg-white hover:text-black border border-white transition-all duration-300">
+              <a href="/get-started?type=client" className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-transparent text-white font-semibold text-base sm:text-lg shadow-lg hover:scale-105 hover:bg-white hover:text-black border border-white transition-all duration-300">
                 Join as a Client
               </a>
             </motion.div>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="text-sm text-white/60 mt-8"
-            >
-              <MixedHeadline text="3000+ students already on the waitlist" />
-            </motion.p>
           </div>
         </section>
       </main>
