@@ -84,6 +84,8 @@ function Stage({ number, title, description, items, delay }) {
 }
 
 export default function Top5() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <>
       <Head>
@@ -92,11 +94,12 @@ export default function Top5() {
 
       <main className="min-h-screen bg-black text-white">
         {/* HEADER BAR */}
-        <header className="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-transparent">
-          <a href="/" className="font-logo text-2xl tracking-tight text-white" style={{ fontFamily: "'The Seasons', serif" }}>
+        <header className="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-4 sm:px-6 py-4 border-b border-white/10 bg-transparent">
+          <a href="/" className="font-logo text-xl sm:text-2xl tracking-tight text-white" style={{ fontFamily: "'The Seasons', serif" }}>
             hustlr
           </a>
-          <nav className="flex gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex gap-8">
             <a
               href="/"
               className="text-white/90 hover:text-white transition text-lg font-normal"
@@ -119,7 +122,19 @@ export default function Top5() {
               get started
             </a>
           </nav>
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="md:hidden text-white/80 hover:text-white"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </header>
+
+        {/* Mobile Menu */}
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-8 pt-20">

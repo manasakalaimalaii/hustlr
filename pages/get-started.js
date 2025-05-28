@@ -26,6 +26,7 @@ export default function GetStarted() {
   const [userType, setUserType] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Get user type from URL query parameter using Next.js router
@@ -54,11 +55,12 @@ export default function GetStarted() {
 
       <main className="min-h-screen bg-black text-white">
         {/* HEADER BAR */}
-        <header className="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-transparent">
-          <a href="/" className="font-logo text-2xl tracking-tight text-white" style={{ fontFamily: "'The Seasons', serif" }}>
+        <header className="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-4 sm:px-6 py-4 border-b border-white/10 bg-transparent">
+          <a href="/" className="font-logo text-xl sm:text-2xl tracking-tight text-white" style={{ fontFamily: "'The Seasons', serif" }}>
             hustlr
           </a>
-          <nav className="flex gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex gap-8">
             <a
               href="/"
               className="text-white/90 hover:text-white transition text-lg font-normal"
@@ -81,7 +83,19 @@ export default function GetStarted() {
               get started
             </a>
           </nav>
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="md:hidden text-white/80 hover:text-white"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </header>
+
+        {/* Mobile Menu */}
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-8 pt-20">
@@ -181,53 +195,6 @@ export default function GetStarted() {
                 </motion.div>
               )}
             </motion.div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-16 sm:py-24 px-4 sm:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl sm:text-3xl md:text-4xl font-normal mb-8 sm:mb-16 text-center"
-              style={{ fontFamily: "'The Seasons', serif" }}
-            >
-              <MixedHeadline text="Why Join the Waitlist?" />
-            </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-              {[
-                {
-                  title: "First Access",
-                  description: "Be among the first to experience the future of student freelancing."
-                },
-                {
-                  title: "Exclusive Benefits",
-                  description: "Get special perks and features when the platform launches."
-                },
-                {
-                  title: "Early Bird Pricing",
-                  description: "Lock in the best rates before they change."
-                }
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10"
-                >
-                  <h3 className="text-xl sm:text-2xl font-normal mb-3 sm:mb-4" style={{ fontFamily: "'The Seasons', serif" }}>
-                    <MixedHeadline text={feature.title} />
-                  </h3>
-                  <p className="text-base sm:text-lg text-white/80">
-                    <MixedHeadline text={feature.description} />
-                  </p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
       </main>

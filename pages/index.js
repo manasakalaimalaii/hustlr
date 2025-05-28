@@ -255,7 +255,7 @@ export default function Home() {
           {/* Left side content */}
           <div className="relative z-10 flex flex-col items-center sm:items-start text-center sm:text-left max-w-2xl">
             <h1
-              className="font-logo text-2xl sm:text-3xl md:text-5xl lg:text-6xl tracking-tight font-normal"
+              className="font-logo text-3xl sm:text-3xl md:text-5xl lg:text-6xl tracking-tight font-normal"
               style={{
                 fontFamily: "'The Seasons', serif",
                 color: "#fff",
